@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Count</title>
+    <style>
+        *
+        {
+            font-family: Footlight MT Light;
+        }
+        button
+        {
+            background-color: black;
+            color:white;
+            height:50px;
+            width:170px;
+            border-radius: 20px;
+            padding:5px;
+        }
+        body
+        {
+            margin-top:100px;
+        }
+    </style>
+</head>
+<body align="center">
+    <center>
+        <fieldset style="border:6px solid rgb(33, 237, 108);padding:10px;width:auto;width:43%;height:500px;">
+            <h1 align="center">Word Count Checker</h1>
+            <input type="text" name="chars" id="characters" required placeholder="Enter the text here."><br><br>
+            <button id="button" onclick="charcount();">Click Here</button>
+            <button id="button" onclick="clr();"> Press to Clear</button>
+            <div id="result"></div>
+        </fieldset>
+    </center>
+    <script>
+        function charcount()
+        {
+            var c=document.getElementById("characters").value;
+            var count=c.length;
+            var t=document.getElementById("result");
+            t.innerHTML="The number of characters is "+count;
+        }
+        function clr()
+        {
+            var t=document.getElementById("result");
+            t.innerHTML="";
+            var b=document.getElementById("characters");
+            b.value="";
+        }
+    </script>
+</body>
+</html>

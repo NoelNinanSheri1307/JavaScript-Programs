@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        *
+        {
+            font-family:Footlight MT Light;
+        }
+        input
+        {
+            width:150px;
+            height:30px;
+        }
+        button
+        {
+            color:white;
+            background-color: black;
+            height:30px;
+            width:60px;
+            border-radius:25px;
+            cursor:pointer;
+        }
+        body
+        {
+            margin-top:100px;
+        }
+    </style>
+</head>
+<body align="center">
+    <center>
+        <fieldset style="border:6px solid rgb(27, 8, 233);padding:10px;width:auto;width:43%;height:500px;">
+            <input type="number" id="num1" name="num1" placeholder="Enter first number: ">
+            <input type="number" id="num2" name="num2" placeholder="Enter second number: "><br><br>
+            <button  onclick="calc('+');">+</button>
+            <button  onclick="calc('-');">-</button>
+            <button  onclick="calc('*');">*</button>
+            <button  onclick="calc('/');">/</button><br>
+            <p id="result"></p>
+            <button id="clear" onclick="cleardata();">Clear Data</button>
+        </fieldset>
+    </center>
+    <script>
+        function calc(operator)
+        {
+            var m=parseFloat(document.getElementById("num1").value);
+            var n=parseFloat(document.getElementById("num2").value);
+            var ans;
+            switch(operator)
+            {
+                case '+':
+                    ans=m+n;
+                    break;
+                case '-':
+                    ans=m-n;
+                    break;
+                case '*':
+                    ans=m*n;
+                    break;
+                case '/':
+                    ans=m/n;
+                    break;
+            }
+            var d=document.getElementById("result");
+            d.innerHTML="The result is: "+ans;
+        }
+        function cleardata()
+        {
+            document.getElementById("num1").value="";
+            document.getElementById("num2").value="";
+            var d=document.getElementById("result");
+            d.innerHTML="";
+        }
+    </script>
+</body>
+</html>

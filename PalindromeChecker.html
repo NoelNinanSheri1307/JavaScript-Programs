@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Number</title>
+    <style>
+        *
+        {
+            font-family: Footlight MT Light;
+        }
+        button
+        {
+            background-color: black;
+            color:white;
+            height:50px;
+            width:170px;
+            border-radius: 20px;
+            padding:5px;
+        }
+        body
+        {
+            margin-top:100px;
+        }
+    </style>
+</head>
+<body align="center">
+    <center>
+        <fieldset style="border:6px solid rgb(246, 3, 3);padding:10px;width:auto;width:43%;height:500px;">
+            <h1 align="center">Palindrome Number Checker</h1>
+            <input type="number" name="number" id="num" required placeholder="Enter Number: "><br><br>
+            <button id="button" onclick="reversecheck();">Click Here to check if palindrome</button><br><br>
+            <button id="button" onclick="clr();"> Press to Clear</button>
+            <div id="result"></div>
+        </fieldset>
+    </center>
+    <script>
+        function reversecheck()
+        {
+            var n=parseInt(document.getElementById("num").value);
+            var temp=n;
+            var rev=0,dig;
+            while(temp!=0)
+            {
+                dig=temp%10;
+                rev=rev*10+dig;
+                temp=Math.floor(temp/10);
+            }
+            var t=document.getElementById("result");
+            if(rev==n)
+            {
+                t.innerHTML="The entered number is a Palindrome Number.";
+            }
+            else
+            {
+                t.innerHTML="The entered number is not a Palindrome Number.";
+            }
+        }
+        function clr()
+        {
+            var t=document.getElementById("result");
+            t.innerHTML="";
+            var b=document.getElementById("num");
+            b.value="";
+        }
+    </script>
+</body>
+</html>
