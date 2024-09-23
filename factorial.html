@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factorial</title>
+    <style>
+        *
+        {
+            font-family: Footlight MT Light;
+        }
+        button
+        {
+            background-color: black;
+            color:white;
+            height:50px;
+            width:170px;
+            border-radius: 20px;
+            padding:5px;
+        }
+        body
+        {
+            margin-top:100px;
+        }
+    </style>
+</head>
+<body align="center">
+    <center>
+        <fieldset style="border:6px solid grey;padding:10px;width:auto;width:43%;height:500px;">
+            <h1 align="center">Factorial </h1>
+            <input type="number" name="number" id="num" required placeholder="Enter Number: "><br><br>
+            <button id="button" onclick="factorial();">Click Here to view factorial</button><br><br>
+            <button id="button" onclick="clr();"> Press to Clear</button>
+            <div id="result"></div>
+        </fieldset>
+    </center>
+    <script>
+        function factorial()
+        {
+            var n=parseInt(document.getElementById("num").value);
+            var f=1;
+            for(var i=1;i<=n;i++)
+            {
+                f=f*i;
+            }
+            var t=document.getElementById("result");
+            t.innerHTML="The factorial of "+n+" is "+f;
+        }
+        function clr()
+        {
+            var t=document.getElementById("result");
+            t.innerHTML="";
+            var b=document.getElementById("num");
+            b.value="";
+        }
+    </script>
+</body>
+</html>
