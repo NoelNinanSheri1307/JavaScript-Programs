@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armstrong</title>
+    <style>
+        *
+        {
+            font-family: Footlight MT Light;
+        }
+        button
+        {
+            background-color: black;
+            color:white;
+            height:50px;
+            width:170px;
+            border-radius: 20px;
+            padding:5px;
+        }
+        body
+        {
+            margin-top:100px;
+        }
+    </style>
+</head>
+<body align="center">
+    <center>
+        <fieldset style="border:6px solid rgb(221, 8, 125);padding:10px;width:auto;width:43%;height:500px;">
+            <h1 align="center">Voter Eligibility</h1>
+            <input type="number" name="number" id="num" required placeholder="Enter Age: "><br><br>
+            <button id="button" onclick="armstrong();">Click Here to check if eligible</button><br><br>
+            <button id="button" onclick="clr();"> Press to Clear</button>
+            <div id="result"></div>
+        </fieldset>
+    </center>
+    <script>
+        function armstrong()
+        {
+            var age=parseInt(document.getElementById("num").value);
+            var t=document.getElementById("result");
+            if(age>18)
+            {
+                t.innerHTML="You are eligible to vote. Congratulations. Please make sure you exercise your right to vote.";
+            }
+            else
+            {
+                t.innerHTML="Sorry!  You are not eligible to vote. Please wait for "+(18-age)+" more years.";
+
+            }
+        }
+        function clr()
+        {
+            var t=document.getElementById("result");
+            t.innerHTML="";
+            var b=document.getElementById("num");
+            b.value="";
+        }
+    </script>
+</body>
+</html>
