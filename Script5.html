@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway Reservation</title>
+    <style>
+        *
+        {
+            margin:0px;
+            padding:0px;
+            font-family:Footlight MT Light;
+        }
+        #topbar h1
+        {
+            padding-top:20px;
+        }
+        #topbar
+        {
+            background-color:darkblue;
+            width:100%;
+            height:65px;
+            color:orange;
+            text-align:center;
+            display:flex;
+            border:4px solid black;
+        }
+        #leftoftopbar
+        {
+            height:100%;
+            width:39%;
+        }
+        #maincontainer
+        {
+            height:710px;
+            width:100%;
+            display:flex;
+            background-image: url(TrainBG.png);
+            background-size: cover;
+        }
+        #sidebar
+        {
+            background-color: rgb(106, 209, 241);
+            width:230px;
+            height:100%;
+            border-right:3px solid blue;
+        }
+        .side
+        {
+            width:80%;
+            height:40px;
+            text-align: center;
+            padding-left:10px;
+            cursor:pointer;
+            border-radius: 25px;
+            transition:ease-in-out 0.3s;
+        }
+        .side:hover
+        {
+            transform:translateX(30px);
+            border:2px solid black;
+        }
+        #info
+        {
+            height:500px;
+            width:950px;
+            color:white;
+            margin-left:230px;
+            margin-top:100px;
+            backdrop-filter: blur(10px); 
+            background: rgba(17, 17, 17, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+            border-radius: 25px;
+            padding-left:5px;
+            padding-top:5px;
+            display:block;
+        }
+        a
+        {
+            text-decoration: none;
+        }
+        #info1
+        {
+            height:650px;
+            width:800px;
+            color:white;
+            margin-left:300px;
+            margin-top:5px;
+            backdrop-filter: blur(10px); 
+            background: rgba(17, 17, 17, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+            border-radius: 25px;
+            padding-left:5px;
+            padding-top:10px;
+            display:none;
+        }
+        #info2
+        {
+            height:600px;
+            width:800px;
+            color:white;
+            margin-left:300px;
+            margin-top:50px;
+            backdrop-filter: blur(10px); 
+            background: rgba(17, 17, 17, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+            border-radius: 25px;
+            padding-left:5px;
+            padding-top:10px;
+            display:none;
+        }
+        input,textarea,select,button
+        {
+            height:30px;
+            width:250px;
+            padding-left:15px;
+            padding-top:10px;
+            border-radius:25px;
+        }
+        #test
+        {
+            width:100px;
+            height:30px;
+            align-self: center;
+            border-radius: 25px;
+        }
+        #g
+        {
+            padding-bottom: 20px; 
+        }
+    </style>
+</head>
+<body>
+    <div id="topbar">
+        <div id="leftoftopbar">
+            <img style="border-radius:50%;margin-right:auto;" src="Train.png" height="100%"  width="65px" style="float:left;">
+        </div>
+        <center><h1 style="font-size:27px;">Online Railway Reservation System</h1></center>
+    </div>
+    <div id="maincontainer">
+        <div id="sidebar">
+            <ul type="disk"><br><br>
+                <li><div class="side" onclick="showform();">Ticket Booking</div></li><br><br>
+                <li><div class="side" onclick="showavail();">Availability Checking</div></li>
+            </ul>
+        </div>
+        <div id="info">
+            <h1>Welcome to EasyRail-Your Convenient Train Ticket Booking Portal!<br><br></h1>
+            <p style="font-size:24px;">
+                Planning your next journey? At EasyRail, we make booking train tickets quick and easy. <br>
+                Whether it's for a short trip or a long journey, explore real-time seat availability, book tickets instantly, and enjoy a seamless travel experience.
+                <br><br><br><ul type="disk" style="font-size:24px;">
+                    <li>Fast Booking Process: Book your tickets in just a few clicks.</li><br>
+                    <li>Real-Time Availability: Check available seats on your preferred trains.</li><br>
+                    <li>Secure Payments: Enjoy safe and reliable transactions.</li>  <br>
+                    <li>24/7 Customer Support: We're here to assist you anytime.</li><br>
+                    <li>Start your journey with us! Book your train tickets today!</li><br>
+                </ul>
+
+            </p>
+        </div>
+
+        <div id="info1">
+            <center><form style="accent-color:rgb(236, 34, 16);">
+                <table cellpadding="15px">
+                <tr>
+                    <td>Name: </td>
+                    <td><input type="text" id="name" placeholder="Enter your name here"><br><br><br><br></td>
+                </tr><br>
+                <tr>
+                    <td>Male Passengers: </td>
+                    <td id="g">
+                        <select id="malep">
+                            <option selected disabled>Choose number of male passengers</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr><br><br>
+                <tr>
+                    <td>Female Passengers: </td>
+                    <td id="g">
+                        <select id="femalep">
+                            <option selected disabled>Choose number of female passengers</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr><br><br>
+                <tr>
+                    <td>From: </td>
+                    <td><textarea id="from" placeholder="Enter From Railway Station"></textarea><br><br><br></td>
+                </tr>
+                <tr>
+                    <td>To: </td>
+                    <td><textarea id="to" placeholder="Enter Destination Railway Station"></textarea><br><br><br></td>
+                </tr>
+                <tr>
+                    <td>Date:</td>
+                    <td><input type="date" id="date"><br><br><br></td>
+                </tr>
+                <tr>
+                    <td>Trains:</td>
+                    <td><select id="trainchoice">
+                        <option selected disabled>Choose your train</option>
+                        <option>Chennai Super Fast Express(13452)</option>
+                        <option>Shornur Deluxe Express(15422)</option>
+                        <option>Janshatabdi Jolarpettai Express(22288)</option>
+                        <option>Dhanbad Express(14577)</option>
+                        <option>Mumbai-Madras Express(29962)</option>
+                        <option>Kollam-Quilon WayFare Express(27701)</option>
+                    </select><br><br><br></td>
+                </tr>
+                <tr><td>Coach:</td>
+                <td><select id="coachchoice">
+                    <option selected disabled>Choose your Coach Position</option>
+                    <option>S1</option>
+                    <option>S2</option>
+                    <option>M1</option>
+                    <option>M2</option>
+                    <option>M3</option>
+                    <option>M4</option>
+                    <option>M5</option>
+                    <option>M6</option>
+                    <option>M7</option>
+                    <option>M8</option>
+                    <option>M9</option>
+                    <option>M10</option>
+                    <option>M11</option>
+                    <option>M12</option>
+                    <option>A1</option>
+                    <option>A2</option>
+                    <option>A3</option>
+                </select><br><br><br></td></tr>
+            </table>
+                <button type="button" style="background-color:black;color:white;border:0;" id="test" onclick="showbill();">Submit</button>
+                <input type="reset" id="test" style="background-color:black;color:white;border:0;">
+            </form></center>
+        </div>
+        <div id="info2">
+        </div>
+    </div>
+    <script>
+        var m=0,f=0;
+        function showform()
+        {
+            document.getElementById("info").style.display = 'none';
+            document.getElementById('info1').style.display = 'block';
+            document.getElementById('info2').style.display = 'none';
+        }
+        function showbill()
+        {
+            event.preventDefault();
+            document.getElementById("info").style.display = 'block';
+            document.getElementById('info1').style.display = 'none';
+            document.getElementById('info2').style.display = 'none';
+            var t=document.getElementById("info");
+            t.innerHTML="";
+            var name = document.getElementById("name").value;
+            var malePassengers = document.getElementById("malep").value;
+            var femalePassengers = document.getElementById("femalep").value;
+            m=malePassengers;
+            f=femalePassengers;
+            var fromStation = document.getElementById("from").value;
+            var toStation = document.getElementById("to").value;
+            var travelDate = document.getElementById("date").value;
+            var train = document.getElementById("trainchoice").value;
+            var coach = document.getElementById("coachchoice").value;
+            t.innerHTML = `<center>
+            <h2>Booking Details</h2><br>
+            <p><strong>Name:</strong> ${name}</p><br>
+            <p><strong>Male Passengers:</strong> ${malePassengers}</p><br>
+            <p><strong>Female Passengers:</strong> ${femalePassengers}</p><br>
+            <p><strong>From:</strong> ${fromStation}</p><br>
+            <p><strong>To:</strong> ${toStation}</p><br>
+            <p><strong>Travel Date:</strong> ${travelDate}</p><br>
+            <p><strong>Train:</strong> ${train}</p><br>
+            <p><strong>Coach:</strong> ${coach}</p><center>`;
+        }
+        function showavail() 
+        {
+            document.getElementById("info").style.display = 'none';
+            document.getElementById('info1').style.display = 'none';
+            document.getElementById('info2').style.display = 'block';
+            var t = document.getElementById("info2");
+            if (m == 0 && f == 0) 
+            {
+                t.innerHTML =`<center>Please book tickets to see availability statistics of seats left<br>
+                    You have not booked any tickets yet.<br>
+                If you have booked tickets, please recheck your PNR Status or get in touch with our customer service.</center>`;
+            } 
+            else 
+            {
+                var m1=parseInt(m)||0;
+                var f1=parseInt(f)||0;
+                var a=10-(m1+f1);
+                t.innerHTML = `<center><p>The quota of maximum tickets that can be booked at once is 10</p><br><br>
+                               <br><p>Number of male passengers tickets booked: ${m1}</p><br>
+                               <p><center><p>Number of female passengers tickets booked: ${f1}</p></p><br><br>
+                               <p>Number of tickets available to be booked: ${a}</p><br><br>
+                               <p>Thank you for using EasyRail Online Ticket Booking System</p><br><br></center>
+                               `
+            }
+        }        
+    </script>
+</body>
+</html>

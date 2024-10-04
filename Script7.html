@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete based upon Divisibility</title>
+    <style>
+        *
+        {
+            font-family: Footlight MT Light;
+        }
+        #delete
+        {
+            background-color: black;
+            color:white;
+            height:50px;
+            width:170px;
+            border-radius: 20px;
+            padding:5px;
+            margin-bottom: 10px;
+        }
+        body
+        {
+            margin-top:80px;
+        }
+        #buttondiv
+        {
+            width:80%;
+            height:400px;
+            padding: 10px;
+            display:flex;
+            flex-wrap: wrap;
+        }
+        .btn-number
+        {
+            background-color: black;
+            color: white;
+            height: 50px;
+            width: 170px;
+            border-radius: 20px;
+            padding: 5px;
+            margin: 5px;
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    <script src="jQuery.js"></script>
+</head>
+<body align="center">
+    <center>
+        <fieldset style="border:6px solid grey;border-radius:20px;padding:10px;width:auto;width:43%;height:640px;">
+            <h1 align="center">Check Divisibility and delete</h1>
+            <input style="width:200px;height:30px;padding-left:8px;border-radius:25px;" type="number" name="number" id="num" required placeholder="Enter Number: "><br><br>
+            <button id="delete">Click Here to remove those numbers that are divisible</button><br><br>
+            <div id="buttondiv">
+                <button class="btn-number">11</button>
+                <button class="btn-number">22</button>
+                <button class="btn-number">34</button>
+                <button class="btn-number">42</button>
+                <button class="btn-number">50</button>
+                <button class="btn-number">63</button>
+                <button class="btn-number">71</button>
+                <button class="btn-number">85</button>
+                <button class="btn-number">94</button>
+                <button class="btn-number">103</button>
+            </div>
+            <button style="background-color:black;color:white;border-radius:25px;" onclick="clr();"> Press to Clear</button>
+        </fieldset>
+    </center>
+    <script>
+        function clr() 
+        {
+            var b = document.getElementById("num");
+            b.value = "";
+        }
+        $(document).ready(function () 
+        {
+            $('#delete').click(function () 
+            {
+                var inputNumber = parseInt($('#num').val());
+                if (isNaN(inputNumber) || inputNumber === 0) 
+                {
+                    alert("Please enter a valid number greater than 0");
+                    return;
+                }
+                $('#buttondiv .btn-number').each(function () 
+                {
+                    var buttonNumber = parseInt($(this).text());
+                    if (buttonNumber % inputNumber === 0) 
+                    {
+                        $(this).remove();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

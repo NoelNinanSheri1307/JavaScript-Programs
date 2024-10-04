@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentence Reverser</title>
+    <style>
+        *
+        {
+            font-family: Footlight MT Light;
+            margin:0;
+            padding:0;
+        }
+        body
+        {
+            margin-top:180px;
+            background-color: rgba(83, 252, 252, 0.926);
+        }
+        button
+        {
+            background-color: black;
+            color:white;
+            height:50px;
+            width:170px;
+            border-radius: 20px;
+            padding:5px;
+        }
+        input
+        {
+            height:30px;
+            width:300px;
+            border-radius: 25px;
+            padding:10px;
+        }
+        .word
+        {
+            border:2px dotted red;
+            color:red;
+            background-color:rgb(238, 228, 228);
+            padding:5px;
+        }
+        #words span:nth-of-type(odd)
+        {
+            text-decoration:underline;
+        }
+    </style>
+</head>
+<body align="center">
+    <h1>Sentence Reverser!</h1><br><br>
+    <b>
+        <div style="font-size:20px;"> Phrase: <input id="phrase" type="text" size="40"></div><br><br>
+        <div style="font-size:20px;"> Filter: <input id="filter" type="text" size="10"></div><br><br>
+    </b>
+    <div>
+        <button id="go" onclick="SentenceReverse();">Go!</button><br><br>
+    </div>
+    <div id="words" style="font-size:23px;"></div><br><br>
+    <div id="count" style="font-size:23px;"></div>
+    <script>
+        var phrase,filter,count=0,splitWords,result="";
+        function SentenceReverse()
+        {
+            phrase=document.getElementById("phrase").value;
+            filter=document.getElementById("filter").value;
+            splitWords=phrase.split(" ");
+            for(var i=splitWords.length-1;i>=0;i--)
+            {
+                if(filter=="")
+                {
+                    if(!(splitWords[i]==""))
+                    {
+                        result=result+"<span class='word'>"+splitWords[i]+"</span>"+"           ";
+                    }
+                }
+                else
+                {
+                    if(splitWords[i].toUpperCase().includes(filter.toUpperCase()))
+                    {
+                        count++;
+                    }
+                    else
+                    {
+                        if(!(splitWords[i]==""))
+                        {
+                            result=result+"<span class='word'>"+splitWords[i]+"</span>"+"           ";
+                        }
+                    }
+                }
+            }
+            document.getElementById("words").innerHTML=result;
+            document.getElementById("count").innerHTML=count +" word(s) filtered out.";
+            phrase="";
+            filter="";
+            count=0;
+            splitWords=[];
+            result="";  
+        }
+    </script>
+</body>
+</html>

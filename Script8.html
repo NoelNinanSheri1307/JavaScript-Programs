@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration Form JQuery</title>
+    <style>
+        *
+        {
+            font-family: Footlight MT Light;
+        }
+        body 
+        {
+            background-color: #ef9a9a;
+        }
+        .formdiv 
+        {
+            width: 750px;
+            margin-top: 30px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
+        }
+        .formdiv h2 
+        {
+            text-align: center;
+        }
+        .formdiv label 
+        {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .formdiv input, .formdiv select 
+        {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+        }
+        .error 
+        {
+            color: red;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        .formdiv button 
+        {
+            background-color: #257638;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 65%;
+            border-radius: 20px;
+            font-size: 16px;
+        }
+        hr 
+        {
+            border: none;
+            border-top: 2px dotted black;
+            width: 80%; 
+            margin: 20px auto; 
+        }
+        .dot 
+        {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 10px;
+        }
+        .dot label {
+            font-weight: normal;
+        }
+        form
+        {
+            accent-color: red;
+        }
+        #cal
+        {
+            float:left;
+            height:50px;
+            width:50px;
+            border-radius:5px;
+        }
+        .autocomplete-suggestions {
+            border: 1px solid #ccc;
+            background: #fff;
+            position: absolute; /* Position the suggestions correctly */
+            z-index: 999;
+            width: 90%; /* Adjust width */
+            max-height: 150px; /* Limit the height */
+            overflow-y: auto; /* Add scroll if needed */
+        }
+        .autocomplete-suggestion {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .autocomplete-suggestion:hover {
+            background: #efefef;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <div class="formdiv">
+            <img id="cal" src="calendar.png">
+            <h2>Event Registration Form</h2>
+            <form id="registrationForm">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName">
+                <div class="error" id="firstNameError"></div>
+
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName">
+                <div class="error" id="lastNameError"></div>
+
+                <label for="mailingAddress">Mailing Address</label>
+                <input type="text" id="mailingAddress" name="mailingAddress">
+                <div class="error" id="mailingAddressError"></div>
+
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" autocomplete="off">
+                <div class="error" id="cityError"></div>
+                <div class="autocomplete-suggestions" id="autocomplete-suggestions" style="display:none;"></div>
+
+                <label for="state">State</label>
+                <select id="state" name="state">
+                    <option selected disabled value="">Select a State</option>
+                    <option value="KL">Kerala</option>
+                    <option value="TN">Tamil Nadu</option>
+                    <option value="AP">Andhra Pradesh</option>
+                    <option value="KN">Karnataka</option>
+                </select>
+                <div class="error" id="stateError"></div>
+
+                <label for="zipCode">Zip Code</label>
+                <input type="text" id="zipCode" name="zipCode">
+                <div class="error" id="zipCodeError"></div>
+
+                <label>Email</label>
+                <input type="email" id="email" name="email">
+                <div class="error" id="emailError"></div>
+                <hr>
+                <label>Are you speaking at the conference?</label>
+                <div class="dot">
+                    <label><input type="radio" name="speaking" value="Yes"> Yes</label>
+                    <label><input type="radio" name="speaking" value="No"> No</label>
+                </div>
+                <div class="error" id="speakingError"></div>
+
+                <label>Conference Pass</label>
+                <div class="dot">
+                    <label><input type="radio" name="conferencePass" value="1-day"> 1-day Pass</label>
+                    <label><input type="radio" name="conferencePass" value="2-day"> 2-day Pass</label>
+                    <label><input type="radio" name="conferencePass" value="3-day"> 3-day Pass</label>
+                    <label><input type="radio" name="conferencePass" value="4-day"> 4-day Pass</label>
+                </div>
+                <div class="error" id="conferencePassError"></div>
+                <hr>
+                <label for="mealPreference">Meal Preference</label>
+                <select id="mealPreference" name="mealPreference">
+                    <option disabled selected value="">Select a Meal Preference</option>
+                    <option value="Veg">Veg</option>
+                    <option value="Non-Veg">Non-Veg</option>
+                    <option value="Jain">Jain</option>
+                </select>
+                <div class="error" id="mealPreferenceError"></div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </center>
+
+    <script src="jQuery.js"></script>
+    <script>
+        $(document).ready(function () {
+            const cities = ["Vellore", "Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Kochi", "Thiruvananthapuram", "Bengaluru", "Hyderabad", "Visakhapatnam"];
+            $('#city').on('input', function() 
+            {
+                let input = $(this).val().toLowerCase();
+                $('#autocomplete-suggestions').empty().hide();
+                if (input) {
+                    let suggestions = cities.filter(city => city.toLowerCase().includes(input));
+                    suggestions.forEach(city => {
+                        $('#autocomplete-suggestions').append('<div class="autocomplete-suggestion">' + city + '</div>');
+                    });
+                    $('#autocomplete-suggestions').show();
+                }
+            });
+            $(document).on('click', '.autocomplete-suggestion', function() 
+            {
+                $('#city').val($(this).text());
+                $('#autocomplete-suggestions').hide();
+            });
+            $('#autocomplete-suggestions').on('click', function(event) 
+            {
+                event.stopPropagation();
+            });
+            $(document).on('click', function() {
+                $('#autocomplete-suggestions').hide();
+            });
+
+            $('#registrationForm').on('submit', function (e) 
+            {
+                e.preventDefault();
+                $('.error').text('');
+                let isValid = true;
+                let firstName = $('#firstName').val().trim();
+                let lastName = $('#lastName').val().trim();
+                let mailingAddress = $('#mailingAddress').val().trim();
+                let city = $('#city').val().trim();
+                let state = $('#state').val();
+                let zipCode = $('#zipCode').val().trim();
+                let email = $('#email').val().trim();
+                let speaking = $('input[name="speaking"]:checked').val();
+                let conferencePass = $('input[name="conferencePass"]:checked').val();
+                let mealPreference = $('#mealPreference').val();
+                if (firstName === '') {
+                    $('#firstNameError').text('First name is required.');
+                    isValid = false;
+                } 
+                else if (!/^[A-Za-z ]+$/.test(firstName)) 
+                {
+                    $('#firstNameError').text('First name must contain only alphabets.');
+                    isValid = false;
+                }
+                if (lastName === '') 
+                {
+                    $('#lastNameError').text('Last name is required.');
+                    isValid = false;
+                } 
+                else if (!/^[A-Za-z ]+$/.test(lastName)) 
+                {
+                    $('#lastNameError').text('Last name must contain only alphabets.');
+                    isValid = false;
+                }
+                if (mailingAddress === '') 
+                {
+                    $('#mailingAddressError').text('Mailing address is required.');
+                    isValid = false;
+                }
+                if (city === '') 
+                {
+                    $('#cityError').text('City is required.');
+                    isValid = false;
+                }
+                if (state === '') 
+                {
+                    $('#stateError').text('State is required.');
+                    isValid = false;
+                }
+                if (zipCode === '') 
+                {
+                    $('#zipCodeError').text('Zip code is required.');
+                    isValid = false;
+                }
+                else if (!/^\d{5}$/.test(zipCode)) 
+                {
+                        $('#zipCodeError').text('Zip code must be exactly 5 digits.');
+                        isValid = false;
+                }
+                if (email === '')
+                {
+                    $('#emailError').text('Email is required.');
+                    isValid = false;
+                } 
+                else if (!/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/.test(email)) 
+                {
+                    $('#emailError').text('Invalid email format.');
+                    isValid = false;
+                }
+                if (!speaking) 
+                {
+                    $('#speakingError').text('Please select if you are speaking.');
+                    isValid = false;
+                }
+                if (!conferencePass) 
+                {
+                    $('#conferencePassError').text('Please select a conference pass.');
+                    isValid = false;
+                }
+                if (mealPreference === '') 
+                {
+                    $('#mealPreferenceError').text('Please select a meal preference.');
+                    isValid = false;
+                }
+                if (isValid) {
+                    alert('Form submitted successfully!');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulb Purchase</title>
+    <style>
+        * 
+        {
+            font-family: Footlight MT Light;
+            margin: 0;
+            padding: 0;
+        }
+        #navbar 
+        {
+            background-color: rgb(190, 238, 16);
+            height: 88px;
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            padding: 0 30px; 
+        }
+        #navbar img 
+        {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+        }
+        #heading 
+        {
+            font-size: 32px;
+            margin-left: 250px;
+        }
+        #navbar-links 
+        {
+            display: flex;
+        }
+        #navbar-links a 
+        {
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            margin-left: 30px; 
+        }
+        #navbar-links a:hover 
+        {
+            color: darkblue;
+        }
+        #maincontainer 
+        {
+            background-image: url(BulbBG.jpeg);
+            background-size: contain;
+            height: 694px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #light 
+        {
+            height: 520px;
+            width: 950px;
+            color: white;
+            backdrop-filter: blur(10px);
+            background: rgba(231, 226, 226, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 25px;
+            padding: 20px;
+        }
+        input 
+        {
+            height: 30px;
+            width: 250px;
+            padding-left: 15px;
+            padding-top: 10px;
+            border-radius: 25px;
+            accent-color: yellow;
+            justify-content: center;
+        }
+        td 
+        {
+            padding: 10px 0;
+        }
+        button, input[type="reset"] 
+        {
+            width: 100px;
+            height: 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            background-color: black;
+            color: white;
+            border: 0;
+            text-align: center;
+            display: inline-block;
+            line-height: 30px;
+            padding: 0;
+        }
+        #bill 
+        {
+            display: none;
+            color: black;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        #bill table 
+        {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        #bill th, #bill td 
+        {
+            border: 3px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <img src="Bulb.jpg" alt="LightBulb Logo">
+        <h1 id="heading">The LightBulb Store</h1>
+        <div id="navbar-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#products">Products</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+    <div id="maincontainer">
+        <div id="light">
+            <center>
+                <form id="form">
+                    Name: <input type="text" id="name"><br><br>
+                    <table cellpadding="6px" cellspacing="0">
+                        <tr>
+                            <th>Select the items: </th>
+                            <th></th>
+                            <th>Quantity</th>
+                        </tr>
+                        <tr>
+                            <td>Four 100 Watt Short-Life bulbs for Rs 20.39</td>
+                            <td><input type="checkbox" id="bulb1"></td>
+                            <td><input type="number" id="bulb1n" value="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Eight 100 Watt Short-Life bulbs for Rs 30.95</td>
+                            <td><input type="checkbox" id="bulb2"></td>
+                            <td><input type="number" id="bulb2n" value="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Four 100 Watt Long-Life bulbs for Rs 40.20</td>
+                            <td><input type="checkbox" id="bulb3"></td>
+                            <td><input type="number" id="bulb3n" value="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Eight 100 Watt Long-Life bulbs for Rs 70.49</td>
+                            <td><input type="checkbox" id="bulb4"></td>
+                            <td><input type="number" id="bulb4n" value="0"></td>
+                        </tr>
+                        <tr>
+                            <td>VISA</td>
+                            <td><input type="radio" id="visa" name="pay"></td>
+                        </tr>
+                        <tr>
+                            <td>MasterCard</td>
+                            <td><input type="radio" id="mcard" name="pay"></td>
+                        </tr>
+                        <tr>
+                            <td>Discover</td>
+                            <td><input type="radio" id="discover" name="pay"></td>
+                        </tr>
+                        <tr>
+                            <td><button type="submit" style="background-color:black;color:white;border:0;">Submit</button><br></td>
+                            <td></td>
+                            <td><input type="reset" style="background-color:black;color:white;border:0;"></td>
+                        </tr>
+                    </table>
+                </form>
+            </center>
+        </div>
+        <div id="bill">
+            <h2>Billing Information</h2>
+            <table>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+                <tbody id="bill-details"></tbody>
+                <tr>
+                    <td colspan="3" style="text-align: right;">Total Amount before Tax:</td>
+                    <td id="total-amount"></td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="text-align: right;">Total Amount after 13.5% VAT Tax:</td>
+                    <td id="final-amount"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script src="jQuery.js"></script>
+    <script>
+        $(document).ready(function() 
+        {
+            $('#form').on('submit', function(event) 
+            {
+                event.preventDefault();
+                let totalAmount = 0;
+                const billDetails = $('#bill-details');
+                billDetails.html('');
+                const customerName = $('#name').val();
+                let paymentMethod = '';
+                if ($('#visa').is(':checked')) 
+                {
+                    paymentMethod = 'VISA';
+                } 
+                else if ($('#mcard').is(':checked')) 
+                {
+                    paymentMethod = 'MasterCard';
+                } 
+                else if ($('#discover').is(':checked')) 
+                {
+                    paymentMethod = 'Discover';
+                }
+                $('#bill').prepend
+                (`
+                    <p><strong>Customer Name:</strong> ${customerName}</p>
+                    <p><strong>Payment Method:</strong> ${paymentMethod}</p>
+                `);
+                if ($('#bulb1').is(':checked')) 
+                {
+                    const quantity = parseInt($('#bulb1n').val());
+                    const price = 20.39;
+                    const itemTotal = quantity * price;
+                    totalAmount += itemTotal;
+                    billDetails.append(`<tr><td>Four 100 Watt Short-Life bulbs</td><td>${quantity}</td><td>Rs ${price.toFixed(2)}</td><td>Rs ${itemTotal.toFixed(2)}</td></tr>`);
+                }
+                if ($('#bulb2').is(':checked')) 
+                {
+                    const quantity = parseInt($('#bulb2n').val());
+                    const price = 30.95;
+                    const itemTotal = quantity * price;
+                    totalAmount += itemTotal;
+                    billDetails.append(`<tr><td>Eight 100 Watt Short-Life bulbs</td><td>${quantity}</td><td>Rs ${price.toFixed(2)}</td><td>Rs ${itemTotal.toFixed(2)}</td></tr>`);
+                }
+                if ($('#bulb3').is(':checked')) 
+                {
+                    const quantity = parseInt($('#bulb3n').val());
+                    const price = 40.20;
+                    const itemTotal = quantity * price;
+                    totalAmount += itemTotal;
+                    billDetails.append(`<tr><td>Four 100 Watt Long-Life bulbs</td><td>${quantity}</td><td>Rs ${price.toFixed(2)}</td><td>Rs ${itemTotal.toFixed(2)}</td></tr>`);
+                }
+    
+                if ($('#bulb4').is(':checked')) 
+                {
+                    const quantity = parseInt($('#bulb4n').val());
+                    const price = 70.49;
+                    const itemTotal = quantity * price;
+                    totalAmount += itemTotal;
+                    billDetails.append(`<tr><td>Eight 100 Watt Long-Life bulbs</td><td>${quantity}</td><td>Rs ${price.toFixed(2)}</td><td>Rs ${itemTotal.toFixed(2)}</td></tr>`);
+                }
+                $('#total-amount').text(`Rs ${totalAmount.toFixed(2)}`);
+                const finalAmount = totalAmount + (totalAmount * 0.135);
+                $('#final-amount').text(`Rs ${finalAmount.toFixed(2)}`);
+                $('#light').hide();
+                $('#bill').show();
+            });
+        });
+    </script>
+    
+</body>
+</html>

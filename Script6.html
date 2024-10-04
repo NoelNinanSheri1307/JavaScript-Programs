@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Example</title>
+    <style>
+        *
+        {
+            font-family:Footlight MT Light;
+        }
+        body
+        {
+            background-color: rgb(246, 246, 232);
+        }
+        table 
+        {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td 
+        {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <center><h1>Table using HTML and JQuery Selectors</h1>
+    <h3>Odd rows have darker grey while  even rows have lighter grey<br><br>The headings have been changed by JQuery CSS</h3></center>
+    <table id="myTable">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>City</th>
+                <th>State</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Mannix</td>
+                <td>Bolton</td>
+                <td>Merizo</td>
+                <td>Michigan</td>
+            </tr>
+            <tr>
+                <td>Suki</td>
+                <td>King</td>
+                <td>Fairmont</td>
+                <td>Oklahoma</td>
+            </tr>
+            <tr>
+                <td>Shelby</td>
+                <td>English</td>
+                <td>Durham</td>
+                <td>Arkansas</td>
+            </tr>
+            <tr>
+                <td>Portia</td>
+                <td>Burns</td>
+                <td>Princeton</td>
+                <td>Rhode Island</td>
+            </tr>
+            <tr>
+                <td>Dacey</td>
+                <td>Young</td>
+                <td>Covina</td>
+                <td>South Carolina</td>
+            </tr>
+            <tr>
+                <td>Clark</td>
+                <td>Reyes</td>
+                <td>Grand Rapids</td>
+                <td>New Jersey</td>
+            </tr>
+            <tr>
+                <td>Maris</td>
+                <td>Decker</td>
+                <td>Sierra Madre</td>
+                <td>Georgia</td>
+            </tr>
+        </tbody>
+    </table>
+    <script src="jQuery.js"></script>
+    <script>
+        $(document).ready(function() 
+        {
+            $('#myTable thead th:nth-child(1)').css({'background-color':'red','font-weight':"bold"});      
+            $('#myTable thead th:nth-child(2)').css({'background-color':'yellow','font-weight':"bold"});   
+            $('#myTable thead th:nth-child(3)').css({'background-color':'blue','font-weight':"bold"});     
+            $('#myTable thead th:nth-child(4)').css({'background-color':'green','font-weight':"bold"});    
+            $('#myTable tbody tr:odd').css('background-color','#E0E0E0'); 
+            $('#myTable tbody tr:even').css('background-color','#A9A9A9');
+        });
+    </script>
+</body>
+</html>

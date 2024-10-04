@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Script1</title>
+    <style>
+        *
+        {
+            font-family:Footlight MT Light;
+        }
+    </style>
+</head>
+<body align="center">
+    <button onclick="Calculate_Charges()">Calculate Charges</button>
+    <script type="text/javascript">
+        var total=0;
+        function Calculate_Charges()
+        {
+            var h=parseInt(prompt("Enter the number of parking hours"));
+            var yesterday=parseInt(prompt("Enter the charges yesterday: "));
+            var charge;
+            if(h<=3)
+                charge=2;
+            else if(h>3 && h<=24)
+                charge=2+(h-3)*0.5;
+            else if(h>24)
+                document.write("Invalid Input");
+            if(charge>10)
+                charge=10;
+            document.write("The charges for the customer today is: $"+charge+"<br>");
+            total=yesterday+charge;
+            document.write("The total running charges are $"+total+"<br>");
+        }
+    </script>
+</body>
+</html>

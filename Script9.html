@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Super Nifty To-Do List</title>
+    <script src="jQuery.js"></script>
+    <style>
+        *
+        {
+            font-family:Footlight MT Light;
+        }
+        body 
+        {
+            width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgb(246, 174, 213);
+        }
+        h1 
+        {
+            text-align: center;
+        }
+        #list 
+        {
+            list-style-type: none;
+            padding: 0;
+        }
+        #list li:nth-child(odd) 
+        {
+            background-color: white;
+        }
+        #list li:nth-child(even) 
+        {
+            background-color: yellow;
+        }
+        li 
+        {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius:25px;
+        }
+        #inputBox 
+        {
+            width: 70%;
+            padding: 10px;
+            margin-right: 10px;
+            border-radius:8px;
+        }
+        button 
+        {
+            padding: 10px;
+            margin: 0 5px;
+            background-color:rgb(142, 236, 236);
+            color:black;
+            border-radius:5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Super Nifty To-Do List</h1><br>
+    <div>
+        <input type="text" id="inputBox" placeholder="Enter a task to be done:">
+        <button id="addBtn">Add</button><br><br><br>
+        <button id="removeBtn">Remove</button>
+    </div>
+    <ul id="list"></ul>
+    <script>
+            $(document).ready(function() 
+            {
+                $('#addBtn').click(function() 
+                {
+                    addItem();
+            });
+            $('#removeBtn').click(function() 
+            {
+                removeItem();
+            });
+            function addItem() 
+            {
+                var inputText = $('#inputBox').val().trim();
+                if (inputText !== '') 
+                {
+                    var $listItem = $('<li>').text(inputText);
+                    $('#list').append($listItem);
+                    $('#inputBox').val(''); 
+                }
+            }
+            function removeItem() 
+            {
+                var textToRemove = $('#inputBox').val().trim().toLowerCase();
+                if (textToRemove !== '') {
+                    $('#list li').each(function() 
+                    {
+                        if ($(this).text().toLowerCase() === textToRemove)
+                        {
+                            $(this).remove();
+                            return false; 
+                        }
+                    });
+                }
+                $('#inputBox').val('');
+            }
+        });
+
+    </script>
+</body>
+</html>

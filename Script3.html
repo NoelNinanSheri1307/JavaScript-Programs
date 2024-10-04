@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <style>
+        *
+        {
+            font-family: Footlight MT Light;
+            background-color: black;
+            color:white;
+            border-color: white;
+            accent-color:red;
+        }
+        body 
+        {
+            width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+        label 
+        { 
+            display: block;
+            margin-top: 10px;
+        }
+        input
+        {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+        textarea
+        {
+            width:100%;
+            padding:8px;
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+    function validateaddress() 
+    {
+        var t = document.registration.tempaddress;
+        var p = document.registration.permaddress;
+        var c = document.registration.tpaddress;
+        if (c.checked) 
+        { 
+            p.value = t.value;
+        } else {
+            p.value = "";
+        }
+    }
+    
+    function formvalidate() 
+    {
+        var name = document.registration.studentname;
+        var regno = document.registration.registrationnumber;
+        var dob = document.registration.DOB;
+        var pgm = document.registration.programme;
+        var mail = document.registration.email;
+        var ph = document.registration.phone;
+        var tempaddr = document.registration.tempaddress;
+        var permaddr = document.registration.permaddress;
+        var tpaddr = document.registration.tpaddress;
+        
+        if (namevalidate(name) && regnovalidate(regno) && phvalidate(ph) && mailvalidate(mail)) 
+        {
+            document.registration.submit();
+            return true;
+        }
+        return false;
+    }
+    
+    function namevalidate(name) 
+    {
+        var len = name.value.length;
+        var namepattern = /^[A-Za-z ]+$/;
+        if (len == 0) 
+        {
+            alert("The name input field should not be empty. Please enter your name there.");
+            name.focus();
+            return false;
+        } else if (len > 30) 
+        {
+            alert("The entered name should not have more than 30 characters");
+            name.focus();
+            return false;
+        } else if (name.value.match(namepattern)) 
+        {
+            return true;
+        }
+        return false;
+    }
+    
+    function regnovalidate(regno) 
+    {
+        var n = regno.value;
+        var regnopattern = /^[A-Za-z0-9]+$/;
+        if (n.length == 0) 
+        {
+            alert("The phone number input field should not be empty. Please enter your phone number there.");
+            regno.focus();
+            return false;
+        }
+        if (n.match(regnopattern)) 
+        {
+            return true;
+        } else {
+            alert("The entered Email is not valid. Please enter a valid Email.");
+            regno.focus();
+            return false;
+        }
+    }
+    
+    function phvalidate(phone) 
+    {
+        var num = phone.value;
+        var phonenumberpattern = /^\d{10}$/;
+        if (num.length == 0) 
+        {
+            alert("The phone number input field should not be empty. Please enter your phone number there.");
+            phone.focus();
+            return false;
+        }
+        if (num.match(phonenumberpattern)) 
+        {
+            return true;
+        } else {
+            alert("Your phone number should be exactly 10 digits long and contain only numbers.");
+            phone.focus();
+            return false;
+        }
+    }
+    
+    function mailvalidate(emailInput) 
+    {
+        var emailValue = emailInput.value; 
+        var emailpattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if (emailValue.length == 0) 
+        {
+            alert("The Email input field should not be empty. Please enter your email there.");
+            emailInput.focus();
+            return false;
+        }
+        if (emailValue.match(emailpattern)) 
+        {
+            return true;
+        } else {
+            alert("T    ");
+            emailInput.focus();
+            return false;
+        }
+    }
+</script>
+<h1 align="center">Student Registration Form</h1>
+<h4 align="center">Use Tab Keys to move from one input field to the next</h4>
+<form name="registration" onsubmit=" return formvalidate();">
+    <table border="0" align="center">
+        <tr>
+            <td>
+                <label for="studentname">
+                    Student Name:
+                </label>
+            </td>
+            <td>
+                <input type="text" name="studentname" size="20">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="registrationnumber">
+                    Registration Number:
+                </label>
+            </td>
+            <td>
+                <input type="text" name="registrationnumber" size="20">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="DOB">
+                    Date Of Birth:
+                </label>
+            </td>
+            <td>
+                <input type="date" name="DOB" size="20">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="programme">
+                    Programme:
+                </label>
+            </td>
+            <td>
+                <input type="text" name="programme" size="50">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="email">
+                    EMail ID:
+                </label>
+            </td>
+            <td>
+                <input type="text" name="email" size="50">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="phone">
+                    Phone Number:
+                </label>
+            </td>
+            <td>
+                <input type="text" name="phone" size="50">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="tempaddress">
+                    Temporary Address:
+                </label>
+            </td>
+            <td>
+                <textarea name="tempaddress" rows="3" placeholder="Enter your temporary address here."></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>Permanent address is same as that of the temporary address</p>
+            </td>
+            <td>
+                <center><input style="align-self:center;height:20px;width:20px;" type="checkbox" name="tpaddress" value="permaddress as tempaddress" size="50" onchange="validateaddress();"></center>
+            </td>
+        </tr>
+        <tr></tr>
+            <td>
+                <label for="permaddress">
+                    Permanent Address:
+                </label>
+            </td>
+            <td>
+                <textarea rows="3" name="permaddress" placeholder="Enter your permanent address here."></textarea>
+            </td>
+        </tr>
+    </table>
+    <center>
+        <input style="height:30px;width:60px;justify-content:center;" align="center" type="submit" name="submit" value="submit" onclick="return formvalidate();">
+    </center>
+</form>
+</body>
+</html>

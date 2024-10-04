@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Script2</title>
+    <style>
+        *
+        {
+            margin:0;
+            padding:0;
+        }
+        #first
+        {
+            position:relative;
+            height:40px;
+            width:100%;
+            background-color: black;
+            color:white;
+        }
+        #container
+        {
+            height:1000px;
+            width:100%;
+            display:flex;
+            border:2px solid black;
+            justify-content: space-evenly;
+        }
+        #clock
+        {
+            position:absolute;
+            top:5px;
+            right:5px;
+        }
+        .third
+        {
+            text-align: center;
+        }
+        #demo
+        {
+            border-radius: 25px;
+            margin-top:20px;
+        }
+        #left, #right,#apply
+        {
+            height:20px;
+            width:100px;
+            font-family: 'Times New Roman', Times, serif;
+            color:white;
+            background-color: black;
+        }
+        select,button
+        {
+            font-family: Footlight MT Light;
+            cursor:pointer;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function() 
+        {
+            var time = window.setInterval(timer,1000);
+            function timer() 
+            {
+                var d = new Date();
+                document.getElementById("clock").innerHTML = d.toLocaleTimeString();
+            }
+            function apply() 
+            {
+                var cir = document.getElementById("picker").value;
+                var ftype = document.getElementById("fontFamily").value;
+                var fsize = document.getElementById("size").value;
+                document.body.style.fontFamily = ftype;
+                document.body.style.backgroundColor = cir;
+                document.body.style.fontSize = fsize;
+            }
+            var x = 0;
+            var imgarr = ["UP.jpg", "UP1.jpg", "UP2.jpg"];
+            var obj = document.getElementById("demo");
+    
+            var myVar = setInterval(function() {
+                myslideshow();
+            }, 3000);
+    
+            function myslideshow() {
+                if (x < imgarr.length) {
+                    obj.src = imgarr[x];
+                    x++;
+                    if (x == imgarr.length) {
+                        x = 0;
+                    }
+                }
+            }
+            function minusSlides() {
+                if (x == 0) {
+                    x = imgarr.length - 1;
+                } else {
+                    x--;
+                }
+                obj.src = imgarr[x];
+            }
+            document.getElementById("left").onclick = minusSlides;
+            document.getElementById("right").onclick = myslideshow;
+            document.getElementById("apply").onclick = apply;
+        }
+    </script>
+</head>
+<body>
+    <div id="first">
+        <span id="clock"></span>
+    </div>
+    <div id="container"><center>
+        <div class="second" id="slider">
+            <img id="demo" width="500" height="500" src="UP3.jpg">
+        </div>
+        <button id="left" onclick="minusSlides()">&#10094;</button>
+        <button id="right" onclick="myslideshow()">&#10095;</button></center>
+        <div class="third">
+            <div id="align">
+                <input type="color" value="#00ff00" id="picker" selected="#12ff34"><br><br>
+                <select id="fontFamily">
+                    <option selected="true">Times New Roman</option>
+                    <option>Consolas</option>
+                    <option>Centaur</option>
+                    <option>Garamond</option>
+                    <option>Bell MT</option>
+                    <option>Georgia</option>
+                </select><br><br>
+                <select id="size">
+                    <option selected="true">15px</option>
+                    <option>17px</option>
+                    <option>19px</option>
+                    <option>21px</option>
+                    <option>23px</option>
+                </select><br><br>
+                <button id="apply" onclick="apply()">Apply</button>
+                <p id="myP">Sample Text:<br>
+                    Uttar Pradesh (UP), located in northern India, is the most populous state in the country.<br>
+                    Known for its rich cultural heritage, the state is home to significant historical landmarks <br>
+                    such as the Taj Mahal, Varanasi's ghats, and Fatehpur Sikri. UP is also an important agricultural <br>
+                    hub, contributing significantly to India's food production. The vibrant festivals, diverse landscapes, <br>
+                    and architectural marvels make Uttar Pradesh a must-visit destination for travelers seeking to experience <br>
+                    the heart of India's history and culture.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
